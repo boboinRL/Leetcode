@@ -43,6 +43,7 @@
 </ul>
 这个题好难。但是我的思路是对的。
 我的想法是我有一个一维数组，我要把一维数组里面的每个元素valid anagram，再把重复的元素放进同一个二维数组中，从而组成一个完整的二维数组。
+```python
 class Solution(object):
     def groupAnagrams(self, strs):
         n = len(strs)
