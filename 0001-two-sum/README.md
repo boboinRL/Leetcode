@@ -39,3 +39,4 @@
 
 <p>&nbsp;</p>
 <strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than <code>O(n<sup>2</sup>)</code><font face="monospace">&nbsp;</font>time complexity?
+<p>在hashmap这里要注意：我们需要返回的是index（位置），所以把value当作key，index当作value
