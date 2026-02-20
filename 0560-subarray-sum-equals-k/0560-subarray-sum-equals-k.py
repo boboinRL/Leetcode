@@ -16,6 +16,7 @@ class Solution(object):
                 count = count + hashmap[pre_sum]
             #然后还要把新的cur_sum 存入hashmap, 无论啥情况，都要把最新的累计和放进hashmap
             #hashmap[cur_sum] = 1, 我不能简单粗暴的设为1
+            #get function很好用，因为要防止cur_sum和之前的cur_sum相同，就得用get来找是否有一样的cur_sum
             hashmap[cur_sum] = hashmap.get(cur_sum, 0) + 1
         return count
             
