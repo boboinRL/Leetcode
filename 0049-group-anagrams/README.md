@@ -41,3 +41,17 @@
 	<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
 	<li><code>strs[i]</code> consists of lowercase English letters.</li>
 </ul>
+这个题好难。但是我的思路是对的。
+我的想法是我有一个一维数组，我要把一维数组里面的每个元素valid anagram，再把重复的元素放进同一个二维数组中，从而组成一个完整的二维数组。
+class Solution(object):
+    def groupAnagrams(self, strs):
+        n = len(strs)
+        hashmap = {}
+        for i in range(n):
+            sorted(strs[i])
+        for i, x in enumerate(strs):
+        # 我认为到这里我的写法没有我问题
+        # 现在我们要考虑的是什么作为key，什么作为value
+        # 重新排序后的字符串作为key，原字符串的列表作为value
+            hashmap[x] =
+直觉就知道sorted（strs[i]) 这个地方没有写对，没有变量可以赋予给新产生的内容
