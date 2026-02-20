@@ -41,18 +41,29 @@
 	<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
 	<li><code>strs[i]</code> consists of lowercase English letters.</li>
 </ul>
-这个题好难。但是我的思路是对的。
-我的想法是我有一个一维数组，我要把一维数组里面的每个元素valid anagram，再把重复的元素放进同一个二维数组中，从而组成一个完整的二维数组。
+这个题虽然有难度，但我的思路是对的：我有一个一维数组，我要把一维数组里面的每个元素通过排序（Standardization）找到它的标识，再把互为变位词（Anagram）的元素放进同一个哈希表中，最终组成一个二维数组。
+
 ```python
 class Solution(object):
     def groupAnagrams(self, strs):
-        n = len(strs)
+        # 结果存放在 hashmap 中
+        # key: 重新排序后的字符串 (唯一标识)
+        # value: 原字符串组成的列表
         hashmap = {}
-        for i in range(n):
-            sorted(strs[i])
-        for i, x in enumerate(strs):
-        # 我认为到这里我的写法没有我问题
-        # 现在我们要考虑的是什么作为key，什么作为value
-        # 重新排序后的字符串作为key，原字符串的列表作为value
-            hashmap[x] =
+        
+        for x in strs:
+            # 这里的处理很关键：
+            # 1. sorted(x) 会把字符串拆成字符列表并排序，例如 "eat" -> ['a', 'e', 't']
+            # 2. "".join(...) 把列表重新拼回字符串，作为字典不可变的 key
+            key = "".join(sorted(x))
+            
+            # 如果这个标识还没出现过，初始化一个空列表
+            if key not in hashmap:
+                hashmap[key] = []
+            
+            # 将原始字符串 x 加入到对应的组里
+            hashmap[key].append(x)
+            
+        return list(hashmap.values())
+
 直觉就知道sorted（strs[i]) 这个地方没有写对，没有变量可以赋予给新产生的内容
