@@ -1,24 +1,26 @@
 class Solution(object):
     def topKFrequent(self, nums, k):
-        # 1. 统计频率：数字 -> 出现次数
-        # 这一步是 O(n)
+        # similar to longest consecutive sequence
+        # 1. 统计频率
+        num_set = set(nums)
         count = {}
         for n in nums:
-            count[n] = 1 + count.get(n, 0)
-
-        # 2. 桶排序：出现次数 -> [数字列表]
-        # 桶的长度设为 len(nums) + 1，因为一个数最多出现 len(nums) 次
-        # 这一步也是 O(n)
-        freq = [[] for _ in range(len(nums) + 1)]
+            # 这里怎么写能把 n 的次数加进 count 里？
+            count[n] = count.get(n,0)+1
+            
+        # 2. 创建桶 (频率作为索引)
+        # 桶的大小应该是 len(nums) + 1
+        freq = [[] for _ in range(len(nums) + 1)] #就创建这么多个空列表
+        
+        # 3. 把 count 里的数据填进桶里，这里有转变了一下，频率为索引，数字为key
         for n, c in count.items():
             freq[c].append(n)
-
-        # 3. 倒着遍历桶，收集前 k 个高频元素
-        # 我们用到了刚才讨论的 range(start, stop, step) 逆序写法
+            
+        # 4. 准备结果
         res = []
+        # 倒着遍历桶，取前 k 个数字
         for i in range(len(freq) - 1, 0, -1):
-            for n in freq[i]:
-                res.append(n)
-                # 一旦收集够了 k 个，立刻返回
-                if len(res) == k:
+            for num in freq[i]: # 如果这个抽屉里有数字
+                res.append(num)
+                if len(res) == k: # 只要凑够 k 个，立刻收工
                     return res
