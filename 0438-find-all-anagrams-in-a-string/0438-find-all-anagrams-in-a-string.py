@@ -20,7 +20,7 @@ class Solution(object):
             s_count[s[i]] = s_count.get(s[i],0) + 1
             s_count[s[i-len(p)]] -= 1
             if s_count[s[i-len(p)]] == 0:
-                del s_count[s[i-len(p)]]#这一步很重要，如果value为0了，就得先删除，不然在字典里面就是不一样的
+                del s_count[s[i-len(p)]]#这一步很重要，如果value为0了，就得先删除，不然在字典里面有个key的value = 0，对比起来也是不一样的
         if s_count == p_count:
             res.append(len(s)-len(p))#我一开始这里没有理解到位
             #这里实际上等循环结束之后，对比最后一个窗口
