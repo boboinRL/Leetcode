@@ -18,6 +18,6 @@ class Solution(object):
             while r-l+1-max_count > k:
                 count[s[l]] -= 1
                 l += 1
-            res = max(max_count, r-l+1)
+        res = max(max_count, r-l+1)
         return res
         
