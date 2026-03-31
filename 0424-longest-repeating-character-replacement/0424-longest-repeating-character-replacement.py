@@ -15,7 +15,7 @@ class Solution(object):
         for r in range(len(s)):
             count[s[r]] = count.get(s[r], 0) + 1
             max_count = max(max_count, count[s[r]])
-            while r-l+1-max_count > k:
+            if r-l+1-max_count > k:
                 count[s[l]] -= 1
                 l += 1
         res = r-l+1
